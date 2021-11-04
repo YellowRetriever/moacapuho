@@ -1,0 +1,14 @@
+.main-container {
+  background-image: image-url('sunflower-g04575b2bb_1920.jpg');
+  height: 800px;
+  background-size:cover;
+}
+
+
+
+h2 {
+    color: gray;
+    font-weight: lighter;
+    font-size: 18px;
+    margin: 0;
+}
