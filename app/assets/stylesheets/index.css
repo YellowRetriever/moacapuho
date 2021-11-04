@@ -1,5 +1,5 @@
 .main-container {
-  background-image: image-url('sunflower-g04575b2bb_1920.jpg');
+  background-image: url('/images/sunflower-g04575b2bb_1920.jpg');
   height: 800px;
   background-size:cover;
 }
