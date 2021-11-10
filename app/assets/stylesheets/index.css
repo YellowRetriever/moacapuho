@@ -4,6 +4,9 @@
   background-size:cover;
 }
 
+.container {
+  margin: 0 auto;
+}
 
 
 h2 {
