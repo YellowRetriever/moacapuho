@@ -1,0 +1,12 @@
+<%= form_with model: @item, local: true do |f| %>
+    <div>
+        <label>name</label>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <label>status</label>
+        <%= f.select :status, Item.statuses.keys.map{|k| [I18n.t("enum.item.status.#{k}"), k]} %>
+    </div>
+    
+    
+<% end %>

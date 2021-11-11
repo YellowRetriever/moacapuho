@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
     belongs_to :provider
     validates :name, :status, :prefecture, :city, :address, :text, :provider_id, presence: true
-    enum status:{inStock: 0, few: 1, soldOut: 2}
+    enum status:{"---": 0, inStock: 1, few: 2, soldOut: 3}
 end

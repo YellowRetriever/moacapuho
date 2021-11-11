@@ -1,4 +1,4 @@
-<!doctype html>. <%#itemsのshow %>
+<!doctype html> <%#itemsのshow %>
 <html lang="ja">
   <head>
     <!-- Required meta tags -->
@@ -12,11 +12,15 @@
   </head>
   <body>
     <div class="container" >
+      <img src="..." class="img-fluid" alt="Responsive image">
+            <h1 class="p-3 mb-2 bg-dark text-white"><%= @item.name %></h1>
+            <p class="float-right">在庫：<%= @item.status %></p>
+            <p class="text-center"><%= @item.text %></p>
+            <%= link_to "戻る", items_path %>
+        </div>
+        
       
-      
-      
-      
-    </div>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
