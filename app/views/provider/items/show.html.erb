@@ -1,1 +1,9 @@
-providerがみる商品の詳細？
+<div class="container" >
+    <div class="alert alert-info" role="alert"><h1>登録したカップホルダー情報</h1></div>
+    <img src="..." class="img-fluid" alt="Responsive image">
+       <h1 class="p-3 mb-2 bg-dark text-white"><%= @item.name %></h1>
+          <p class="float-right">在庫：<%= @item.status_i18n %></p>
+          <p class="text-center"><%= @item.text %></p>
+          <%= link_to "戻る", provider_items_path %>
+</div>
+        

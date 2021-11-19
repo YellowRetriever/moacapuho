@@ -2,8 +2,8 @@ ja:
     enums:
         item:
             status:
-            "---": "---"
-            inStock: "在庫あり"
-            few: "僅少"
-            soldOut: "在庫なし"
+                "---": "---"
+                inStock: "在庫あり"
+                few: "僅少"
+                soldOut: "在庫なし"
         

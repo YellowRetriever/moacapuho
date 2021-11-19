@@ -5,7 +5,7 @@
     </div>
     <div>
         <label>status</label>
-        <%= f.select :status, Item.statuses.keys.map{|k| [I18n.t("enum.item.status.#{k}"), k]} %>
+        <%= f.select :status, Item.statuses.keys.map{|k| [I18n.t("enums.item.status.#{k}"), k]} %>
     </div>
     
     
