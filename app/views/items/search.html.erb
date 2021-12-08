@@ -1,20 +1,7 @@
-　<%#itemsのindex %>
-  <body>
+ <body>
     <div class="container">
-      <%= search_form_for @q, url: search_items_path do |f| %>
-      <%= f.label :name_or_prefecture_or_city_or_address_cont, "ワード検索" %>
-      <%= f.search_field :name_or_prefecture_or_city_or_address_cont %>
-      
-      <%= f.label :status %>
-      <%= f.radio_button :status_eq, '', {:checked => true} %>指定なし
-      <%= f.radio_button :status_eq, 1 %>在庫あり
-      <%= f.radio_button :status_eq, 2 %>僅少
-      <%= f.radio_button :status_eq, 3 %>在庫なし
-      
-      <%= f.submit "検索" %>
-    <% end %>
-      <div class="alert alert-warning" role="alert"><h1>一覧</h1></div>
-        <% @items.each do |item| %>
+      <div class="alert alert-warning" role="alert"><h1>検索結果</h1></div>
+        <% @results.each do |item| %>
           <div class="media pt-3">
           <svg class="bd-placeholder-img align-self-start mr-3" width="150" height="150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 64x64"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">150×150</text></svg>
             <div class="media-body">

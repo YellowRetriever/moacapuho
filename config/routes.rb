@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :providers
-    resources :items
+  
+    resources :items do
+    collection do
+      get "search"
+    end#ransack検索機能
+  end
+    
   namespace :provider do
       resources :items
   end
@@ -8,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
       resources :providers
   end
+  
   resources :providers
   
   get "top", to: "top#index"
