@@ -22,7 +22,18 @@
   </header>
   <body>
     <div class="main-container">
-    
+    <%= search_form_for @q, url: search_items_path do |f| %>
+      <%= f.label :name_or_prefecture_or_city_or_address_cont, "ワード検索" %>
+      <%= f.search_field :name_or_prefecture_or_city_or_address_cont %>
+      
+      <%= f.label :status %>
+      <%= f.radio_button :status_eq, '', {:checked => true} %>指定なし
+      <%= f.radio_button :status_eq, 1 %>在庫あり
+      <%= f.radio_button :status_eq, 2 %>僅少
+      <%= f.radio_button :status_eq, 3 %>在庫なし
+      
+      <%= f.submit "検索" %>
+    <% end %>
     </div>
 
  
