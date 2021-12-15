@@ -1,9 +1,15 @@
 <%#providerがみる商品一覧%>
 <div class="container">
   <div class="alert alert-info" role="alert"><h1>登録したカップホルダー一覧</h1></div>
+  
   <% @items.each do |item| %>
+  
   <div class="media pt-3">
-     <svg class="bd-placeholder-img align-self-center mr-3" width="150" height="150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 150x150"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">64x64</text></svg>
+    <% if item.images.attached? %>
+      <% item.images.each do |image| %>
+        <%= image_tag image, size: "180x180" %>
+      <% end %>
+    <% end %>
       <div class="media-body">
         <h5 class="mt-0"><%= link_to item.name, provider_item_path(item) %></h5>
         <p class="mb-0"><%= item.text %></p>

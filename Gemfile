@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'rspec-rails'
+gem 'shoulda-matchers'
+gem 'factory_bot_rails'
 gem 'ransack'
 gem 'enum_help'
 gem 'devise'

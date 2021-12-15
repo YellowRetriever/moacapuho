@@ -24,6 +24,10 @@
         <%= f.text_field :text %>
     </div>
     <div>
+        <label>商品画像</label>
+    <%= f.file_field :images, multiple: true %>
+    </div>
+    <div>
         <%= f.submit "送信" %>
     </div>
     

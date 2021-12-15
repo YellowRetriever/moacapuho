@@ -1,5 +1,6 @@
 class Provider::ItemsController < ApplicationController
     before_action :authenticate_provider!
+    
     def index
        # @items = Item.where(provider_id: current_provider.id)とも記載できる↓
         @items= current_provider.items
@@ -14,8 +15,8 @@ class Provider::ItemsController < ApplicationController
     end
     
     def create
-        provider_item_params = params.require(:item).permit(:name, :status, :prefecture, :city, :address, :text, )
-        @item = current_provider.items.new(provider_item_params)
+        provider_item_params = params.require(:item).permit(:name, :status, :prefecture, :city, :address, :text, images: [])
+        @item = current_provider.items.new(provider_item_params) 
         if @item.save
             redirect_to provider_items_path
         else
@@ -28,7 +29,7 @@ class Provider::ItemsController < ApplicationController
     end
     
     def update
-        provider_item_params = params.require(:item).permit(:name, :status, :prefecture, :city, :address, :text, )
+        provider_item_params = params.require(:item).permit(:name, :status, :prefecture, :city, :address, :text, images: [])
         @item = current_provider.items.find(params[:id])
         if @item.update(provider_item_params)
             redirect_to provider_item_path(@item)
