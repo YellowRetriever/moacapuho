@@ -11,6 +11,10 @@ class ItemsController < ApplicationController
     
     def show
         @item = Item.find(params[:id])
+        show_count = Item.pluck("show_count").find(params[:id])
+        if request.get?
+            show_count += 1
+        end
     end
     
     def new

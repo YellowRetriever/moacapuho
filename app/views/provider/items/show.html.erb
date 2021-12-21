@@ -5,7 +5,8 @@
      <% @item.images.each do |image| %>
     <%= image_tag image %>
      <% end %>
-<% end %>
+    <% end %>
+    <%= show_count %>
        <h1 class="p-3 mb-2 bg-dark text-white"><%= @item.name %></h1>
           <p class="float-right">在庫：<%= @item.status_i18n %></p>
           <p class="text-center"><%= @item.text %></p>
