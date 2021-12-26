@@ -11,7 +11,8 @@ class Provider::ItemsController < ApplicationController
     end
     
     def new
-        @item = Item.new
+        @item = Item.build_from current_provider
+        
     end
     
     def create

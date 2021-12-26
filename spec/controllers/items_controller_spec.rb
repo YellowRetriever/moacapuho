@@ -49,7 +49,7 @@ RSpec.describe ItemsController, type: :request do
     
     
     
-    context "#show" do
+    describe "#show" do
         context "target exist" do#存在するid送られた時
             let!(:item){create(:item, provider_id: provider.id)}
 
@@ -74,7 +74,7 @@ RSpec.describe ItemsController, type: :request do
     
     
     
-    context "#new" do
+    describe "#new" do
         it "response success" do
             get "/items/new"
             expect(response.status).to eq(200)
@@ -83,7 +83,7 @@ RSpec.describe ItemsController, type: :request do
     
     
     
-    context "#create" do
+    describe "#create" do
         context "validation error" do#必須項目エラー
             let(:params) { {item: {name: ""}} }
             it "response success" do
@@ -101,15 +101,94 @@ RSpec.describe ItemsController, type: :request do
                 expect(response.body).to include "Missing create"
             end
         end
+        
+        context "登録成功" do
+            let(:item) {build(:item, provider_id: provider.id)}
+            let(:params) { {item: {name: item.name, status: item.status, prefecture: item.prefecture, city: item.city, address: item.address, text: item.text, show_count: item.show_count}} }
+            let(:created_item) { Item.last }
+        end
+        it "response redirect" do#登録成功したら一覧が返されるか
+            post "/items", params: params
+            expect(response.status).to redirect_to item_path(created_item.id)
+        end
+        it "response redirect" do
+            expect {
+                post "/items", params: params
+            }.to change{ Item.count }.by(1)
+        end
     end
     
-    context "#edit" do
+    
+    
+    describe "#edit" do
+        let!(:item){create(:item, provider_id: provider.id)}
+        
+        context "target exist" do
+            it "response success" do
+                get "/items/#{item.id}/edit"
+                expect(response.status).to eq(200)
+            end
+            
+            it "render item" do
+                get "/items/#{todo.id}/edit"
+                expect(response.body).to include item.text
+            end
+        end
+        
+        context "target un exist" do
+            it "response success" do
+                expect {
+                    get "/items/0/edit"
+                }.to raise_error(ActiveRecord::RecordNotFound)
+            end
+        end
     end
 
-    context "#update" do
+
+
+    describe "#update" do
+        context "update failure" do
+            let(:item) {create(:item, provider_id: provider.id)}
+            let(:params) { {item: {name: "", status: item.status, prefecture: item.prefecture, city: item.city, address: item.address, text: item.text, show_count: item.show_count}} }
+            
+            it "response success" do
+              patch "/items/#{item.id}", params: params
+              expect(response.status).to eq(200)
+            end
+            it "render edit" do
+                patch "/items/#{item.id}", params: params
+                expect(response.body).to include "Editing Item"
+            end
+        end
+        
+        context "update success" do
+            let(:item) {create(:item, provider_id: provider.id)}
+            let(:params) { {item: {name: item.name + " updated", status: item.status, prefecture: item.prefecture, city: item.city, address: item.address, text: item.text, show_count: item.show_count}} }
+            
+            it "response redirect" do
+                patch "/items/#{item.id}", params: params
+                expect(response.status).to redirect_to item_path(item.id)
+            end
+        end
+        
     end
     
-    context "#destroy" do
+    
+    
+    describe "#destroy" do
+        context "削除成功" do
+            let!(:item) {create(:item, provider_id: provider.id)}
+            it "delete success" do
+            expect {
+                delete "/items/#{item.id}"
+            }.to change{Item.count}.by(-1)
+            end
+
+            it "response redirect" do
+              delete "/items/#{item.id}"
+                expect(response.status).to redirect_to items_path
+            end
+        end
     end
     
 end
